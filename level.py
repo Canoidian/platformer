@@ -17,5 +17,6 @@ class Level:
                     tile = Tile((x,y),tile_size)
                     self.tiles.add(tile)
     def run(self):
+        self.tiles.update()
         self.tiles.draw(self.display_surface)
 
