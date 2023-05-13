@@ -61,18 +61,17 @@ class Level:
         player.apply_gravity()
 
         for sprite in self.tiles.sprites():
-            if sprite.rect.colliderect(player.rect):
-                if player.direction.y > 0:
-                    player.rect.bottom = sprite.rect.top
-                    player.direction.y = 0
-                elif player.direction.y < 0:
-                    player.rect.top = sprite.rect.bottom
-                    player.direction.y = 0
+            player = self.player.sprite
+            player.apply_gravity()
 
-        # check if player has fallen off the screen
-        if player.rect.top > self.display_surface.get_height():
-            player.kill()
-
+            for sprite in self.tiles.sprites():
+                if sprite.rect.colliderect(player.rect):
+                    if player.direction.y > 0:
+                        player.rect.bottom = sprite.rect.top
+                        player.direction.y = 0
+                    elif player.direction.y < 0:
+                        player.rect.top = sprite.rect.bottom
+                        player.direction.y = 0
 
     def run(self):
         # level tiles
