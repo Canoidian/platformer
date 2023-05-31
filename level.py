@@ -49,11 +49,13 @@ class Level:
         player.rect.x += player.direction.x * player.speed  # type: ignore  
 
         for sprite in self.tiles.sprites():
-            if sprite.rect.colliderect(player.rect):
-                if player.direction.x < 0:
-                    player.rect.left = sprite.rect.right
-                elif player.direction.x > 0:
-                    player.rect.right = sprite.rect.left
+                if sprite.rect.colliderect(player.rect):
+                    if player.direction.y > 0:
+                        player.rect.bottom = sprite.rect.top - 1
+                        player.direction.y = 0
+                    elif player.direction.y < 0:
+                        player.rect.top = sprite.rect.bottom  + 1
+                        player.direction.y = 0
 
     def vertical_movement_collision(self):
         player = self.player.sprite
